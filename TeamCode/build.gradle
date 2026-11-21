@@ -18,7 +18,7 @@ apply from: '../build.common.gradle'
 apply from: '../build.dependencies.gradle'
 
 android {
-    namespace = 'org.firstinspires.ftc.mylib'
+    namespace = 'org.firstinspires.ftc.TeamCode'
     compileSdk 34
     defaultConfig {
         minSdk 24
@@ -40,7 +40,7 @@ android {
                 release(MavenPublication) {
                     from components.release
                     groupId = 'com.github.jaha-design'
-                    artifactId = 'test_artifact
+                    artifactId = 'test_artifact'
 
                 }
             }
