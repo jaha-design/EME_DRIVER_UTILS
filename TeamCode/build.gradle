@@ -1,4 +1,5 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
 
 //
 // build.gradle in TeamCode
@@ -17,13 +18,36 @@ apply from: '../build.common.gradle'
 apply from: '../build.dependencies.gradle'
 
 android {
-    namespace = 'org.firstinspires.ftc.teamcode'
+    namespace = 'org.firstinspires.ftc.mylib'
+    compileSdk 34
+    defaultConfig {
+        minSdk 24
+        targetSdk 34
+    }
 
     packagingOptions {
         jniLibs.useLegacyPackaging true
     }
+
+    publishing {
+        singleVariant('release') {
+            withSourcesJar()
+    }
+
+    afterEvaluate {
+        publishing {
+            publications {
+                release(MavenPublication) {
+                    from components.release
+                    groupId = 'com.github.jaha-design'
+                    artifactId = 'test_artifact
+
+                }
+            }
+        }
+    }
 }
 
 dependencies {
-    implementation project(':FtcRobotController')
+    compileOnly project(':FtcRobotController')
 }
